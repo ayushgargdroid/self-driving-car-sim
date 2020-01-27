@@ -10,6 +10,8 @@ public class CommandServer : MonoBehaviour
 {
 	public CarRemoteControl CarRemoteControl;
 	public Camera FrontFacingCamera;
+	public Camera RightCamera;
+	public Camera LeftCamera;
 	private SocketIOComponent _socket;
 	private CarController _carController;
 
@@ -65,7 +67,9 @@ public class CommandServer : MonoBehaviour
 				data["throttle"] = _carController.AccelInput.ToString("N4");
 				data["speed"] = _carController.CurrentSpeed.ToString("N4");
 				data["image"] = Convert.ToBase64String(CameraHelper.CaptureFrame(FrontFacingCamera));
-				_socket.Emit("telemetry", new JSONObject(data));
+				data["imageLeft"] = Convert.ToBase64String(CameraHelper.CaptureFrame(LeftCamera));
+				data["imageRight"] = Convert.ToBase64String(CameraHelper.CaptureFrame(RightCamera));
+					_socket.Emit("telemetry", new JSONObject(data));
 			}
 		});
 

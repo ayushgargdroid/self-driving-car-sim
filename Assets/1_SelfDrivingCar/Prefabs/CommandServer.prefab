@@ -53,3 +53,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CarRemoteControl: {fileID: 0}
   FrontFacingCamera: {fileID: 0}
+  LeftCamera: {fileID: 0}
+  RightCamera: {fileID: 0}
